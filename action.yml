@@ -1,0 +1,33 @@
+name: "AI PR Review Agent"
+description: "Parallel LangGraph multi-agent PR reviewer (Security, Bugs, Pytest, Flake8) with line-level inline comments."
+branding:
+  icon: "git-pull-request"
+  color: "purple"
+
+inputs:
+  groq_api_key:
+    description: "Groq API Key"
+    required: true
+  github_token:
+    description: "GitHub Token with pull-requests: write permission"
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.11"
+
+    - name: Install dependencies
+      shell: bash
+      run: pip install -r ${{ github.action_path }}/requirements.txt
+
+    - name: Run PR Review Agent
+      shell: bash
+      env:
+        GROQ_API_KEY: ${{ inputs.groq_api_key }}
+        GITHUB_TOKEN: ${{ inputs.github_token }}
+        PR_URL: ${{ github.event.pull_request.html_url }}
+      run: python ${{ github.action_path }}/run_ci_review.py
