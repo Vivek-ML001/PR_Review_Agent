@@ -23,8 +23,6 @@ Built with **LangGraph**, **Groq (gpt-oss-120b)**, **Streamlit** and the **GitHu
 11. [Evaluation and test results](#evaluation-and-test-results)
 12. [Design decisions and lessons learned](#design-decisions-and-lessons-learned)
 13. [Limitations](#limitations)
-14. [Roadmap](#roadmap)
-15. [Simple glossary](#simple-glossary)
 
 ---
 
@@ -51,6 +49,8 @@ This agent automates that first round:
 | Streamlit app | `docs/app.png` |
 | Review posted on the PR (inline comments) | `docs/pr-review.png` |
 | LangSmith trace of one run | `docs/langsmith.png` |
+
+> ### Live: https://pr-reviewagent.streamlit.app/
 
 > Add your screenshots to a `docs/` folder and update the paths above.
 
@@ -354,18 +354,6 @@ One review uses roughly 3K tokens. At list price that is about **$0.001 per revi
 - It is **triggered manually** (paste a link). There is no webhook yet.
 - The "sandbox" is currently flake8 in a temporary folder, not a Docker container.
 - Public PRs are sent to the Groq API (and to LangSmith if tracing is on). Don't run it on private or company code unless that is allowed.
-
----
-
-## Roadmap
-
-- [ ] GitHub **webhook** (FastAPI) so every new PR is reviewed automatically
-- [ ] **Docker sandbox** that really runs `pytest` and linters on the PR code
-- [ ] **Orchestrator / planner** node that chooses which workers to run
-- [ ] **Held-out benchmark** with harder bugs and many more clean files
-- [ ] Re-review on new commits and **update the old comment** instead of adding a new one
-- [ ] Support more languages (JavaScript, Java) with their own linters
-- [ ] Deploy to the cloud
 
 ---
 
