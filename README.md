@@ -1,4 +1,4 @@
-# 🤖 PR Review Agent
+# 🐙  PR Review Agent
 
 An AI code reviewer for GitHub Pull Requests. Paste a PR link, and a team of AI "specialists" reads the changed code, runs a linter, and posts a clean review straight on the PR, with comments on the exact lines.
 
