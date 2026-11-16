@@ -1,7 +1,7 @@
 import streamlit as st
 from backend import run_review
 
-st.set_page_config(page_title="PR Review Agent", page_icon="🤖 ", layout="centered")
+st.set_page_config(page_title="PR Review Agent", page_icon="🐙", layout="centered")
 st.title("🤖 PR Review Agent")
 st.caption("Enter a GitHub PR URL to generate an automated AI review (Security, Bugs, Tests, Lint)")
 
