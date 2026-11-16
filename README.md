@@ -53,6 +53,7 @@ This agent automates that first round:
 > ### Live: https://pr-reviewagent.streamlit.app/
 
 > Add your screenshots to a `docs/` folder and update the paths above.
+> [![GitHub Marketplace](https://img.shields.io/badge/Marketplace-PR%20Review%20Agent%20v1.0.0-blue?logo=github)](https://github.com/marketplace/actions/ai-pr-review-agent)
 
 ---
 
