@@ -6,6 +6,10 @@ Built with **LangGraph**, **Groq (gpt-oss-120b)**, **Streamlit** and the **GitHu
 
 > The agent is an **assistant**, not a replacement for a human reviewer. It does the first pass (secrets, obvious bugs, style) so humans can focus on design and business logic.
 
+Use this GitHub action with your project:
+[![GitHub Marketplace](https://img.shields.io/badge/Marketplace-PR%20Review%20Agent%20v1.0.0-blue?logo=github)](https://github.com/marketplace/actions/ai-pr-review-agent)
+
+
 ---
 
 ## Table of contents
@@ -53,7 +57,6 @@ This agent automates that first round:
 > ### Live: https://pr-reviewagent.streamlit.app/
 
 > Add your screenshots to a `docs/` folder and update the paths above.
-> [![GitHub Marketplace](https://img.shields.io/badge/Marketplace-PR%20Review%20Agent%20v1.0.0-blue?logo=github)](https://github.com/marketplace/actions/ai-pr-review-agent)
 
 ---
 
