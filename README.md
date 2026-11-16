@@ -1,6 +1,6 @@
 # 🐙  PR Review Agent
 
-An AI code reviewer for GitHub Pull Requests. Paste a PR link, and a team of AI "specialists" reads the changed code, runs a linter, and posts a clean review straight on the PR, with comments on the exact lines.
+An automated AI code reviewer for GitHub Pull Requests. It runs **automatically via GitHub Actions** whenever a PR is opened or updated—or on-demand via the **Streamlit UI**—reading changed code, running `flake8`, and posting inline review comments on the exact lines.
 
 Built with **LangGraph**, **Groq (gpt-oss-120b)**, **Streamlit** and the **GitHub API**. Traced with **LangSmith**.
 
@@ -64,10 +64,12 @@ The system has three parts: **fetching** (getting the PR), the **LangGraph flow*
 
 ```mermaid
 flowchart LR
-    A["Developer opens a PR"] --> B["Paste PR URL in Streamlit"]
-    B --> C["GitHub API:<br/>diff + full files"]
+    A["Developer opens / updates PR"] --> T1["GitHub Actions CI<br/>(Autonomous)"]
+    A --> T2["Streamlit UI<br/>(Manual URL)"]
+    T1 --> C["GitHub API:<br/>diff + full files"]
+    T2 --> C
     C --> D["LangGraph agent"]
-    D --> E["Review posted<br/>on the PR"]
+    D --> E["Inline review posted<br/>on the PR"]
 ```
 
 ### 2. LangGraph flow: every PR goes through the router
@@ -213,15 +215,17 @@ How to read it:
 ## Project structure
 
 ```
-PR-Review-Agent/
-├── backend.py        # LangGraph agent: fetch, router, workers, sandbox, reducer, GitHub posting
-├── frontend.py       # Streamlit UI
-├── evaluate.py       # Benchmark: seeded bugs + clean files
+PR_Review_Agent/
+├── .github/
+│   └── workflows/
+│       └── pr_review.yml   # Autonomous CI trigger on pull_request events
+├── backend.py              # LangGraph agent: fetch, router, workers, sandbox, reducer
+├── run_ci_review.py        # Headless CLI entrypoint for GitHub Actions
+├── frontend.py             # Streamlit UI
+├── evaluate.py             # Benchmark: seeded bugs + clean files
+├── Dockerfile              # Containerized deployment
 ├── requirements.txt
-├── .env              # your keys (NOT committed)
-├── .gitignore
-├── README.md
-└── docs/             # screenshots
+└── docs/                   # Screenshots
 ```
 
 ---
