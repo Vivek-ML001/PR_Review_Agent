@@ -6,7 +6,7 @@ on:
 
 permissions:
   contents: read
-  pull-requests: write  # Allows GitHub's built-in token to post inline review comments
+  pull-requests: write
 
 jobs:
   ai-code-review:
@@ -24,7 +24,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
-          pip install ruff bandit
+          pip install flake8
 
       - name: Run LangGraph PR Review Agent
         env:
@@ -32,8 +32,3 @@ jobs:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           PR_URL: ${{ github.event.pull_request.html_url }}
         run: python run_ci_review.py
-
-      - name: Install dependencies
-        run: |
-          pip install -r requirements.txt
-          pip install flake8
