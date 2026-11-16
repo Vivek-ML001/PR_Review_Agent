@@ -6,8 +6,16 @@ from langchain_groq import ChatGroq
 
 load_dotenv()
 
+# MODEL = "openai/gpt-oss-120b"
+# llm = ChatGroq(model=MODEL, temperature=0)
+
+groq_key = (os.getenv("GROQ_API_KEY") or "").strip()
+if groq_key:
+    os.environ["GROQ_API_KEY"] = groq_key
+
 MODEL = "openai/gpt-oss-120b"
-llm = ChatGroq(model=MODEL, temperature=0)
+llm = ChatGroq(model=MODEL, api_key=groq_key, temperature=0)
+GH_TOKEN = (os.getenv("GITHUB_TOKEN") or "").strip()
 GH_TOKEN = os.getenv("GITHUB_TOKEN")
 MAX_FILES, MAX_CHARS = 4, 8000
 DOCS = (".md", ".txt", ".rst")
