@@ -1,0 +1,8 @@
+.env
+myenv/
+venv/
+__pycache__/
+.git
+eval_results.json
+docs/
+*.png
